@@ -6,44 +6,74 @@
 	<title></title>
 	<style type="text/css">
 	 body{
-	 	background-image:url(https://img.freepik.com/premium-photo/abstract-white-gray-background-abstract-clean-background-blurred-patterns-light-pale-background-abstract-pale-geometric-pattern_39704-4170.jpg) ;
+	 	padding-top: 8%;
+	 	background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20201026/pngtree-scene-with-geometrical-forms-the-poster-model-minimal-background-render-image_437743.jpg) ;
 	 	background-size: cover;
 	 }
 	 #username{
 			padding: .7%;
-			border:dotted;
-			border-color: black;
-			background-color:lightgrey;
+			border-radius: 25px;
+			border:solid;
+			border-color:lightblue;
+			background-color:white;
 		}
 	#password{
 			padding: .7%;
-			border:dotted;
-			border-color: black;
-			background-color:lightgrey;}
-		#btn{
-			padding: .2%;
-			border: double;
-			border-color: black;
-			border-radius:35%;
+			border:lightblue;
+			border-color:;
+			border-radius: 25px;
+		}
+	#btn{
+			padding:.5%;
+			border-radius:45%;
+			border-color:lightblue;
+		}
+		#select{
+			margin-top: 1%;
+			padding: .3%;
+			border:solid;
+			border-color:lightblue;
+			border-radius: 25px;
+			}
+		}
 	</style>
-
 </head>
 <body><center>
-	<p><input  placeholder="enter name" Id="username"/></p>
-	<input placeholder="enter password" Id="password">
-	<p><button Id="btn" onclick="submit()">submit</button></p></center>
+	<p><input  placeholder="Enter Name" Id="username"/></p>
+	<input placeholder="Enter Password" Id="password"></br>
+	<select Id="select">
+		<option>select a course</option>
+		<option value="CSE">CSE</option>
+		<option value="ECE">ECE</option>
+		<option value="IT">IT</option>
+		<option value="EEE">EEE</option>
+		<option value="Civil">Civil</option>
+		<option value="Mechanical">Mechanical</option>
+	</select>
+	<p>
+	<input type="radio" id="male" name="gender"/>Male
+	<input type="radio" id="female" name="gender"/>Female
+	</p>
+	<p><button Id="btn" onclick="submit()">Submit</button></p></center>
 	<script type="text/javascript">
 		function submit(){
 			var username=document.getElementById("username").value
 			var password=document.getElementById("password").value
+			var select=document.getElementById("select").value
+			var gmale=document.getElementById("male").checked
+			var gfemale=document.getElementById("female").checked
+			if(gmale==true) var gender="male"
+				else var gender="female"
 			console.log(username)
 			console.log(password)
+			console.log(select)
+				console.log(gender)
 			fetch("http://localhost:3000/newData",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
 			},
-			body:JSON.stringify({name:username,password})
+			body:JSON.stringify({name:username,password,select,gender})
 		})
 		.then((res)=>{
 			console.log(res)
@@ -54,7 +84,6 @@
 			alert(error)
 		})
 			}
-	
-	</script>
+</script>
 </body>
 </html>
